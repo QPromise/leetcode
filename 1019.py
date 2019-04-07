@@ -3,7 +3,7 @@
 #      def __init__(self, x):
 #          self.val = x
 #          self.next = None
-
+"""以下两种方式都没有完成关于1019题链表中下一个更大节点的查找，耗时太久"""
 class Solution(object):
     def nextLargerNodes(self, head):
         """
@@ -49,4 +49,4 @@ class Solution(object):
                     cur=cur.next
                     answer.append(flag)   
                 return answer
-                """以上两种方式都没有完成关于链表中下一个更大节点的查找，耗时太久"""
+  
