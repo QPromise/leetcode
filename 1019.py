@@ -1,0 +1,52 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#      def __init__(self, x):
+#          self.val = x
+#          self.next = None
+
+class Solution(object):
+    def nextLargerNodes(self, head):
+        """
+        :type head: ListNode
+        :rtype: List[int]
+        """
+        temp=[]
+        answer=[]
+        cur=head
+        flag=0
+        while cur!=None:
+            temp.append(int(cur.val))
+            cur=cur.next
+        for i in range(len(temp)):
+            flag=0
+            for j in range(i,len(temp)):
+                if(temp[i]<temp[j]):
+                    answer.append(temp[j])
+                    flag=1
+                    break
+            if flag==0:
+                answer.append(flag)
+        return answer
+   def nextLargerNodes(self, head):
+        """
+        :type head: ListNode
+        :rtype: List[int]
+        """            
+        answer=[]
+                cur=head#从头开始
+                while cur!=None:#控制遍历链表
+                    cur_val=int(cur.val)
+                    mov=cur.next
+                    flag=0
+                    while mov!=None:#控制查找后面更大的元素
+                        if int(mov.val)<=cur_val:
+                            mov=mov.next
+                            continue
+                        if int(mov.val)>cur_val:
+                            flag=int(mov.val)
+                            break
+                            mov=mov.next
+                    cur=cur.next
+                    answer.append(flag)   
+                return answer
+                """以上两种方式都没有完成关于链表中下一个更大节点的查找，耗时太久"""
