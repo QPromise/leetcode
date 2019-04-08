@@ -1,4 +1,4 @@
-#LeetCode
+LeetCode
 - python爱我
 - 算法爱我
 - 不断学习，不断进步
