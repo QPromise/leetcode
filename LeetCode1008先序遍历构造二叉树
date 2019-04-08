@@ -1,1 +1,59 @@
-
+#好菜啊！！！！今天又是解题失败的一天，溜了溜了。
+#Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+def breadth_travel(root):
+        '''层次遍历'''
+        queue=[root]
+        result=[]
+        while queue:
+            cur_node=queue.pop(0)
+            result.append(cur_node.val)
+            if cur_node.left is not None:
+                queue.append(cur_node.left)
+            elif cur_node.left is  None:
+                if cur_node.right is not None:
+                    result.append('null')
+            if cur_node.right is not None:
+                queue.append(cur_node.right)
+            # else:
+            #     result.append('null')
+        print(result)
+if __name__=='__main__':
+    preorder=[8,5,1,7,10,12]
+    tree_queue=[None]
+    for i in range(0,len(preorder)):#列表中存着所有的未形成树的前序遍历节点
+        tree_queue.append(TreeNode(preorder[i]))
+    if len(tree_queue)is not None:
+        root=tree_queue[1]
+    print(tree_queue)
+    """根据先序遍历 根 左 右的顺序构造树，根节点大于左孩子且小于右孩子"""
+    max_queue=[]
+    min_queue=[]
+    for i in range(2, len(tree_queue)):
+        if tree_queue[i].val>tree_queue[1].val:
+            max_queue=tree_queue[i:]#基于根节点的左树
+            min_queue=tree_queue[2:i]#基于根节点的右树
+            break
+    for i in range(len(min_queue)):#构建左子树
+        if i == 0:
+            root.left=min_queue[i]
+        else:
+            if min_queue[i].val<min_queue[i-1].val:
+                min_queue[i-1].left=min_queue[i]
+            else:
+                min_queue[i-1].right=min_queue[i]
+        print(min_queue[i].val,end=' ')
+    for i in range(len(max_queue)):#构建右子树
+        if i == 0:
+            root.right=max_queue[i]
+        else:
+            if max_queue[i].val<max_queue[i-1].val:
+                max_queue[i-1].left=max_queue[i]
+            else:
+                max_queue[i-1].right=max_queue[i]
+        print(max_queue[i].val,end=' ')
+    breadth_travel(root)#BFS遍历
