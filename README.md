@@ -20,6 +20,7 @@ Response.Write("加油！");
 alert("加油！")
 echo "加油！"
 ```
+[MarkDown简单使用教程](https://www.jianshu.com/p/q81RER)
 
 [LeetCode1008先序遍历构造二叉树](https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/)
 
