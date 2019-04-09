@@ -1,0 +1,44 @@
+"""最短超级串"""
+"""执行用时 : 64 ms, 在Find the Shortest Superstring的Python提交中击败了100% 的用户"""
+class Solution:
+    def shortestSuperstring(self, A):
+        """
+        :type A: List[str]
+        :rtype: str
+        """
+        def commonStringMerge(s1,s2):
+            max_len=float('-inf')
+            min_len=min(len(s1),len(s2))
+            ans=''
+            for i in range(1,min_len+1):
+                if s1.endswith(s2[:i]):
+                    if max_len<i:
+                        max_len=i
+                        ans=s1+s2[i:]
+            for i in range(1,min_len+1):
+                if s2.endswith(s1[:i]):
+                    if max_len<i:
+                        max_len=i
+                        ans=s2+s1[i:]
+            return max_len,ans
+        A_len=len(A)
+        while A_len!=1:
+            max_len=float('-inf')
+            ans=''
+            p,q=-1,-1
+            for i in range(A_len):
+                for j in range(i+1,A_len):
+                    temp_len,temp_res=commonStringMerge(A[i],A[j])
+                    if max_len<temp_len:
+                        max_len=temp_len
+                        ans=temp_res
+                        p=j
+                        q=i
+            A_len-=1
+            if max_len == float('-inf'):
+                A[0]+=A[A_len]
+            else:
+                A[p]=ans
+                A[q]=A[A_len]
+        return A[0]
+   
