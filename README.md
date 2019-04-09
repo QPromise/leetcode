@@ -26,3 +26,6 @@ echo "加油！"
 
 [LeetCode1019链表中下一个更大节点的查找](https://leetcode-cn.com/problems/next-greater-node-in-linked-list/)
 
+[LeetCode943最短超级串](https://leetcode-cn.com/problems/find-the-shortest-superstring/)
+
+
