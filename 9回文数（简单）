@@ -1,5 +1,5 @@
 """
-利用字符串翻转来判断
+利用字符串翻转来判断一个整数是否倒序正序是一样的
 """
 class Solution(object):
     def isPalindrome(self, x):
