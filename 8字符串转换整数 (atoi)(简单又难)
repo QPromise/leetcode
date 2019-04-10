@@ -1,0 +1,45 @@
+"""难在判断条件考虑不全！！！！"""
+"""
+在提交了将近十次之后终于ok了
+'   ','+-','+-1','+0 123','3.1415926'等等都是要注意的地方。
+"""
+class Solution(object):
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        ans=''
+        for i in range(len(str)):
+            min_=0
+            if str[0]>='a'and str[0]<='z' or str[0]>='A'and str[0]<='Z':#一开始碰到字符的话直接ans='0'结束
+                ans='0'
+                break
+            elif str[i]==' ':
+                if ans!='':#ans已经有值了，则碰到空格直接结束 如'  +0 123'
+                    break
+                pass#在字符串最前面的多组空格直接跳过
+            elif str[i]=='-' or str[i]=='+':
+                if str[i:].find('-')!=-1 or str[i:].find('+')!=-1:
+                    min_=min(str[i:].find('-'),str[i:].find('+'))
+                    for j in range(i,min_):
+                        str[j]==' '
+                if str[0:i].count(' ')!=len(str[0:i]):
+                    break
+                ans+=str[i]
+            elif str[i]>='a'and str[i]<='z' or str[i]>='A'and str[i]<='Z' or str[i]=='.':#碰到这些字符判断是否前面都是空格过来的，置为0再
+            #结束
+                if ans=='':
+                    ans='0'
+                break
+            else:
+                ans+=str[i]#除去上面考虑的情况，其它的就是往里加
+        if str=='' or str.count(' ')==len(str) or ans=='-' or ans=='+':#要考虑全是空格怎么办？只有+-怎么办？字符串一开始就是空怎么办？
+            ans='0'
+        ans=int(ans)
+        if ans<-(2)**31:#判断是否溢出，溢出则置为最大值或最小值
+            ans=-(2)**31
+        if ans>2**31-1:
+            ans=2**31-1
+        return ans
+                
