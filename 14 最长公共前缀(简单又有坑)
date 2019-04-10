@@ -1,0 +1,38 @@
+"""
+简单又有坑，不要忘记当strs只有一个字符串的情况，基本思路是先找出字符串列表中最短的那个字符串还有它的长度，将此字符串从头开始取，然后遍历整个列表，
+有一个中间列表temp来记录找到的个数，如果这个个数是跟列表字符串数相同，说明是公共长度，然后记录当前长度还有值，继续找，找到更长的就替换它，找不到
+则此串为最长公共前缀。
+"""
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        p=0
+        str=""#记录最短串
+        min_len=float('inf')
+        for i in range(len(strs)):
+            print(strs[i])
+            if len(strs[i])<min_len:
+                min_len=len(strs[i])
+                p=i      
+            str=strs[p]
+        ans=""#记录最长公共前缀
+        max=float('-inf')#记录找到的当前公共长度，找最大的
+        for i in range(1,len(str)+1):
+            temp=0#判断是否都有此str[0:i]串
+            for j in range(len(strs)):
+                if strs[j].startswith(str[0:i]):
+                    temp+=1
+            if temp!=len(strs):
+                pass
+            else:
+                if len(str[0:i])>max:#找到更长的就替换
+                    max=len(str[0:i])
+                    ans=str[0:i]
+                else:
+                    pass
+        if len(strs)==1:#如果列表只有一个字符串，answer为它
+            ans=strs[0]
+        return ans
