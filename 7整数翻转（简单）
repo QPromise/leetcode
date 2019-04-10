@@ -1,0 +1,28 @@
+"""
+要注意的就是当结尾是0的时候，一开始返回的是个字符串，提交错误。
+如果一开始是负号or正号的话，倒序添加字符是到不了下标为0的
+"""
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        ans=''
+        s=str(x)
+        flag=True
+        for i in range(len(s)):
+            if s[i]=='-':
+                ans+=s[i]
+                flag=False
+            elif s[i]=='+':
+                ans+=s[i]
+                flag=False
+            else:
+                if flag is True :
+                    ans+=s[len(s)-i-1]
+                else:
+                    ans+=s[len(s)-i]
+        if int(ans)<=(-2)**31 or int(ans)>=2**31-1:
+            ans=0
+        return int(ans)
