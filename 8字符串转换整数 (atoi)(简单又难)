@@ -1,5 +1,6 @@
 """难在判断条件考虑不全！！！！"""
 """
+https://leetcode-cn.com/problems/string-to-integer-atoi/submissions/
 在提交了将近十次之后终于ok了
 '   ','+-','+-1','+0 123','3.1415926'等等都是要注意的地方。
 """
