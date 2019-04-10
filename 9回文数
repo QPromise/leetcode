@@ -1,0 +1,18 @@
+"""
+利用字符串翻转来判断
+"""
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        cur=str(x)
+        reverse=''
+        for i in range(len(cur)):
+            reverse+=cur[len(cur)-i-1]
+        if cur==reverse:
+            return True
+        else:
+            return False
+        
