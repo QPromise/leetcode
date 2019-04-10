@@ -1,0 +1,23 @@
+"""
+要考虑不能重复利用这个数组中同样的元素
+"""
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        p,q=float('inf'),float('inf')#记录下标
+        temp=0
+        ans=[0]*2
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j]==target:
+                    if i<p:
+                        p=i
+                    if j<q:
+                        q=j
+        ans[0]=p
+        ans[1]=q
+        return ans
