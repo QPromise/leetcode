@@ -1,0 +1,117 @@
+"""正确思路"""
+"""
+https://leetcode-cn.com/problems/roman-to-integer/submissions/
+对于给定的特殊情况判断当前的下一个是否在这几个特殊情况之中，在其中的话i跳到下下个，感觉写的很辣鸡，判断语句太多。
+I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+"""
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        count=0
+        i=0
+        while i <len(s):
+            #print(i)
+            #print(count)
+            if i!=len(s)-1: 
+                if s[i]=='I' and s[i+1]=='V':
+                    count+=4
+                    i+=2
+                    continue
+                elif s[i]=='I' and s[i+1]=='X':
+                    count+=9
+                    i+=2
+                    continue
+            if s[i]=='I':
+                count+=1
+                i+=1
+                continue
+            if i!=len(s)-1:    
+                if s[i]=='X' and s[i+1]=='L':
+                    count+=40
+                    i+=2
+                    continue
+                elif s[i]=='X' and s[i+1]=='C':
+                    count+=90
+                    i+=2
+                    continue
+            if s[i]=='X':
+                count+=10
+                i+=1
+                continue
+            if i!=len(s)-1: 
+                if s[i]=='C' and s[i+1]=='D':
+                    count+=400
+                    i+=2
+                    continue
+                elif s[i]=='C' and s[i+1]=='M':
+                    count+=900
+                    i+=2
+                    continue
+            if s[i]=='C':
+                count+=100
+                i+=1
+                continue
+            if s[i]=='V':
+                count+=5
+                i+=1
+                continue
+            if s[i]=='L':
+                count+=50
+                i+=1
+                continue
+            if s[i]=='D':
+                count+=500
+                i+=1
+                continue
+            if s[i]=='M':
+                count+=1000
+                i+=1
+                continue
+        return count
+                
+"""错误思路"""
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        count=0
+        while s.find('IV') is not -1:
+            temp=s.find('IV')
+            count+=4
+            s=s[:temp]+s[temp+2:]
+        while s.find('IX') is not -1:
+            temp=s.find('IX')
+            count+=9
+            s=s[:temp]+s[temp+2:]
+        while s.find('XL') is not -1:
+             temp=s.find('XL')
+             count+=40
+             s=s[:temp]+s[temp+2:]
+        while s.find('XC')is not -1:
+             temp=s.find('XC')
+             count+=90
+             s=s[:temp]+s[temp+2:]
+        while s.find('CD') is not -1:
+             temp=s.find('CD')
+             count+=400
+             s=s[:temp]+s[temp+2:]
+        while s.find('CM') is not -1:
+             temp=s.find('CM')
+             count+=900
+             s=s[:temp]+s[temp+2:]
+        else:
+                count+=s.count('I')*1
+                count+=s.count('V')*5
+                count+=s.count('X')*10
+                count+=s.count('L')*50
+                count+=s.count('C')*100
+                count+=s.count('D')*500
+                count+=s.count('M')*1000
+        return count
