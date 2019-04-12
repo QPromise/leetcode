@@ -1,0 +1,26 @@
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        while(s.find('()')!=-1 or s.find('{}')!=-1 or s.find('[]')!=-1 and s!=''):
+            temp=s.split('()')
+            s=''
+            for i in range(len(temp)):
+                if temp[i]!='':
+                    s+=temp[i]
+            temp=s.split('[]')
+            s=''
+            for i in range(len(temp)):
+                if temp[i]!='':
+                    s+=temp[i]
+            temp = s.split('{}')
+            s=''
+            for i in range(len(temp)):
+                if temp[i]!='':
+                    s+=temp[i]
+        if s=='':
+            return True
+        else:
+            return False
