@@ -1,0 +1,56 @@
+"""
+对两个树进行广度遍历将节点的值添加到数组当中去，注意判断两个树一上来为空的情况。
+"""
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution(object):
+    def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        if p is None and q is None:
+            return True
+        elif p is None:
+            return False
+        elif q is None:
+            return False
+        queue=[]
+        p_num=[]
+        q_num=[]
+        queue.append(p)
+        p_num.append(p.val)
+        print(p.val)
+        while queue:
+            cur=queue.pop(0)
+            if cur.left is not None:
+                queue.append(cur.left)
+                p_num.append(cur.left.val)
+            else:
+                p_num.append('null')
+            if cur.right is not None:
+                queue.append(cur.right)
+                p_num.append(cur.right.val)
+            else:
+                p_num.append('null')
+        queue.append(q) 
+        q_num.append(q.val)
+        while queue:
+            cur=queue.pop(0)
+            if cur.left is not None:
+                queue.append(cur.left)
+                q_num.append(cur.left.val)
+            else:
+                q_num.append('null')
+            if cur.right is not None:
+                queue.append(cur.right)
+                q_num.append(cur.right.val)
+            else:
+                q_num.append('null')
+        return q_num==p_num
+        
