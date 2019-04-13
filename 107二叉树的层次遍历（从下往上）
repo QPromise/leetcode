@@ -36,13 +36,6 @@ class Solution(object):
 """
 正确方法
 """
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
 class Solution(object):
     def levelOrderBottom(self, root):
         """
@@ -51,18 +44,18 @@ class Solution(object):
         """
         if not root:
             return []
-        stack = [root]
-        res = []
-        while len(stack) != 0:
-            tmp = []
-            res_each = []
-            for i in stack:
-                res_each.append(i.val)
-                if i.left != None:
-                    tmp.append(i.left)
-                if i.right != None:
-                    tmp.append(i.right)
-            stack = tmp
-            res.insert(0,res_each)
-
-        return res
+        queue=[root]
+        ans=[]
+        while queue:
+            #cur=queue.pop(0)
+            temp=[]#保存每层的节点值
+            t=[]#保存每层的节点
+            for cur in queue:#一次遍历一层的节点，然后将节点的值放入
+                temp.append(cur.val)
+                if cur.left:
+                    t.append(cur.left)
+                if cur.right:
+                    t.append(cur.right)
+            queue=t
+            ans.insert(0,temp)
+        return ans
