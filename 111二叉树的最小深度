@@ -1,0 +1,20 @@
+"""
+广度优先遍历
+"""
+class Solution(object):
+    def minDepth(self, root):
+        if not root:#根节点判空返0
+            return 0
+        queue=[root]
+        ans=0
+        while queue:
+            temp=[]#记录当前层的节点，每次都要置空重新添加该层节点
+            i+=1
+            for cur in queue:
+                if cur.left is None and cur.right is None:#只要当前层有节点左右孩子都为0则返回
+                    return ans
+                if cur.left:
+                    temp.append(cur.left)
+                if cur.right:
+                    temp.append(cur.right)
+            queue=temp
