@@ -1,0 +1,22 @@
+"""
+遍历字符串，如果当前字符在之前的字符串中找到，则temp为之前字符的下一个到当前字符的位置截取，并与max记录最大长度比较
+特殊的是字符串为空时max为0。
+"""
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        temp = ''
+        max=float('-inf')
+        for i in range(len(s)):
+            if temp.find(s[i])!=-1:
+                temp=temp[temp.find(s[i])+1:]+s[i]
+            else:
+                temp+=s[i]
+            if max<len(temp):
+                max=len(temp)
+        if max==float('-inf'):
+            max=0
+        return max
