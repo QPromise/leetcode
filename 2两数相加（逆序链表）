@@ -1,0 +1,32 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+"""
+想将两个链表中的数输出取整相加再强转为字符串，之后再倒序添到链表中
+"""
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        sl1,sl2=[],[]
+        while l1 or l2:
+            if l1:
+                sl1.insert(0,str(l1.val))
+                l1=l1.next
+            if l2:
+                sl2.insert(0,str(l2.val))
+                l2=l2.next
+        str1,str2=''.join(sl1),''.join(sl2)
+        temp=str(int(str1)+int(str2))
+        ans=ListNode(0)
+        
+        cur=ans
+        for i in range(len(temp)):
+            cur.next=ListNode(temp[-(i+1)])
+            cur =cur.next
+        return ans.next
