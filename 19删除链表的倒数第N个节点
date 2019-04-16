@@ -5,7 +5,7 @@
 #         self.next = None
 """
 第一次遍历记录链表的节点个数，然后再次遍历链表，当循环到倒数第n个值的前一个的时候，将对应的next指针指向它的下一个的下一个
-特殊的是删除头结点的时候 sum-n-1不可用，如果是单个循环实现呢？
+特殊的是删除头结点的时候sum-n-1下标越界。再者，如果是单个循环实现呢？
 """
 class Solution(object):
     def removeNthFromEnd(self, head, n):
