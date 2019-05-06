@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+#时间复杂度超过100%的python提交用户
 #记住链表赋值是将地址指向，reverse要做两次。
 class Solution(object):
     def zigzagLevelOrder(self, root):
