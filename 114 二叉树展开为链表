@@ -1,0 +1,26 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#栈操作先序遍历，注意左孩子置为None
+class Solution(object):
+    def flatten(self, root):
+        """
+        :type root: TreeNode
+        :rtype: None Do not return anything, modify root in-place instead.
+        """
+        if root is None:
+            return 
+        stack = [root]
+        while stack and root:
+            cur = stack.pop()
+            if cur.right:
+                stack.append(cur.right)
+            if cur.left:
+                stack.append(cur.left)
+            if cur is not root:
+                root.left,root.right = None,cur
+                root = root.right
+        return root
