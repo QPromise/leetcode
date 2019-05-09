@@ -1,0 +1,26 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+#压栈然后出栈，不要忘了最后节点的next置为None，否则超出时间限制
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head is None:
+            return
+        else:
+            stack = []
+            while head:
+                stack.append(head)
+                head = head.next
+            node = stack.pop()
+            ans = node
+            while stack:
+                node.next = stack.pop()
+                node = node.next
+            node.next = None
+            return ans
