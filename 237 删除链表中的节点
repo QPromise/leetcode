@@ -1,0 +1,13 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+#这是一个唯一一行代码解决的问题，先是没看懂题目，后来发现给出的节点直接用下一个覆盖掉然后跳过下一个就行了
+class Solution(object):
+    def deleteNode(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        node.val,node.next = node.next.val,node.next.next
