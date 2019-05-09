@@ -1,0 +1,31 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+#先计数，然后去中间值，再遍历链表当找到中间值的下一个的时候返回
+#因为count/2的值，奇数取整的下一个与偶数的中间值下一个符合题意，没必要分开判断
+class Solution(object):
+    def middleNode(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head is None:
+            return 
+        else:
+            temp = head
+            count = 0
+            while head:
+                head = head.next
+                count += 1
+            mid= count/2
+            count = 0
+            head = temp
+            while head:
+                count += 1
+                if count == mid+1:
+                    return head
+                head = head.next
+
+                   
