@@ -1,0 +1,50 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        #两者剩余长度相同！主要是先计算两个链表的长度，然后对长的一个进行遍历，当遍历到与另一个链表长度相同时停止
+        #再与其同时遍历，找到相同的地址停止，而不是找到相同的值停止。
+        A,B = headA,headB
+        len_A,len_B = 0,0
+        ans = None
+        while headA:
+            headA=headA.next
+            len_A += 1
+        while headB:
+            headB=headB.next
+            len_B += 1
+        print(len_A,len_B)
+        if len_A >len_B:
+            for i in range(len_A-len_B):
+                A=A.next
+            for i in range(len_B):
+                if A == B:
+                    ans = ListNode(A.val)
+                    break
+                A=A.next
+                B=B.next
+        elif len_A < len_B:
+            for i in range(len_B-len_A):
+                B=B.next
+            for i in range(len_A):
+                if A == B:
+                    ans = ListNode(A.val)
+                    break
+                A=A.next
+                B=B.next
+        else:
+             for i in range(len_A):
+                if A == B:
+                    ans = ListNode(A.val)
+                    break
+                A=A.next
+                B=B.next
+        return ans
